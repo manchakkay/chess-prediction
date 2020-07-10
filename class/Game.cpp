@@ -35,14 +35,17 @@ int Game::resulter_no_moves(int player, int depth)
     {
         switch (depth)
         {
-        case 4:
+        case 6:
             counter = 1;
             break;
-        case 2:
+        case 4:
             counter = 2;
             break;
-        case 0:
+        case 2:
             counter = 3;
+            break;
+        case 0:
+            counter = 4;
             break;
         }
     }
@@ -93,7 +96,7 @@ void Game::start(int player)
 
     std::vector<Move> available_moves = game_field.get_moves(player);
 
-    int depth = 5;
+    int depth = 7;
     int result = 0;
     int counter = 0;
 
@@ -135,7 +138,7 @@ void Game::start(int player)
         std::cout << "Checkmate available in 2 turns" << std::endl;
     }
 
-    strategies.format_list();
+    strategies.format_list(result);
 }
 
 void Game::history()
@@ -198,7 +201,7 @@ int Game::now_recursion(int depth, Move m, Field f, Strategy s, int player)
                 if (player != main_player && counter == 0)
                 {
                     result = 0;
-                    // break;
+                    break;
                 }
             }
 
@@ -222,14 +225,17 @@ int Game::now_recursion(int depth, Move m, Field f, Strategy s, int player)
         else
         {
             // Мат за один ход
-            if (depth == 4)
+            if (depth == 6)
                 result = 1;
             // Мат за два хода
-            else if (depth == 2)
+            else if (depth == 4)
                 result = 2;
             // Мат за три хода
-            else if (depth == 0)
+            else if (depth == 2)
                 result = 3;
+            // Мат за четыре хода
+            else if (depth == 0)
+                result = 4;
         }
     }
 
@@ -246,20 +252,20 @@ void Game::append_move(int depth, Move m, Strategy &s, int count)
 {
     switch (depth)
     {
-    case 5:
+    case 7:
         s.m1 = m;
         break;
-    case 4:
-        break;
-    case 3:
+    case 5:
         s.strats1 = count;
         s.m2 = m;
         break;
-    case 2:
-        break;
-    case 1:
+    case 3:
         s.strats2 = count;
         s.m3 = m;
+        break;
+    case 1:
+        s.strats3 = count;
+        s.m4 = m;
         break;
     }
 }

@@ -49,10 +49,10 @@ std::string Move::convert()
     std::string result = "";
 
     result += "[";
-    result += (char)(65 + (from.j + 1));
+    result += (char)(65 + (from.j));
     result += (char)(48 + 8 - from.i);
     result += "]->[";
-    result += (char)(65 + (to.j + 1));
+    result += (char)(65 + (to.j));
     result += (char)(48 + 8 - to.i);
     result += "]";
 

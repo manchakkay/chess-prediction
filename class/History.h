@@ -12,6 +12,8 @@ public:
     Move m2;
     double strats2 = 0;
     Move m3;
+    double strats3 = 0;
+    Move m4;
 };
 
 class Formatted_Strategy
@@ -26,6 +28,9 @@ public:
     double m3_found = 1;
     double m3_all = 1;
     Move m3;
+    double m4_found = 1;
+    double m4_all = 1;
+    Move m4;
 
     bool operator<(Formatted_Strategy &r)
     {
@@ -62,6 +67,6 @@ public:
     std::vector<Strategy> list;
     std::vector<Formatted_Strategy> formatted_list;
 
-    void format_list();
+    void format_list(int result);
     void append_strategy(Strategy s, int result);
 };
